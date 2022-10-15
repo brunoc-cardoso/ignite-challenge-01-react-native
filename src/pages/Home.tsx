@@ -9,14 +9,16 @@ export function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   function handleAddTask(newTaskTitle: string) {
-    setTasks(oldTasks => [
-      ...oldTasks,
-      {
-        id: new Date().getTime(),
-        title: newTaskTitle,
-        done: false,
-      },
-    ]);
+    if (newTaskTitle) {
+      setTasks(oldTasks => [
+        ...oldTasks,
+        {
+          id: new Date().getTime(),
+          title: newTaskTitle,
+          done: false,
+        },
+      ]);
+    }
   }
 
   function handleToggleTaskDone(id: number) {
@@ -26,7 +28,7 @@ export function Home() {
           if (task.id === id) {
             return {
               ...task,
-              done: true,
+              done: !task.done,
             };
           } else {
             return task;

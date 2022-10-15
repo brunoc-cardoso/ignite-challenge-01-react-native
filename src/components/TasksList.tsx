@@ -49,11 +49,16 @@ export function TasksList({
                   toggleTaskDone(item.id);
                 }}
               >
-                <View testID={`marker-${index}`} style={styles.taskMarkerDone}>
+                <View
+                  testID={`marker-${index}`}
+                  style={item.done ? styles.taskMarkerDone : styles.taskMarker}
+                >
                   {item.done && <Icon name="check" size={12} color="#FFF" />}
                 </View>
 
-                <Text style={styles.taskText}>{item.title}</Text>
+                <Text style={item.done ? styles.taskTextDone : styles.taskText}>
+                  {item.title}
+                </Text>
               </TouchableOpacity>
             </View>
 
